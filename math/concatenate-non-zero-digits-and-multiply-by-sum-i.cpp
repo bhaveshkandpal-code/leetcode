@@ -1,16 +1,22 @@
 class Solution {
 public:
-    int maxSum(vector<int>& nums) {
-        unordered_set<int> st;
-        int sum = 0, mx = INT_MIN;
+    long long concatAndMultiply(int n) {
+        vector<int> digits;
 
-        for (int x : nums) {
-            mx = max(mx, x);
-            if (x > 0) st.insert(x);
+        while (n > 0) {
+            if (n % 10 != 0)
+                digits.push_back(n % 10);
+            n /= 10;
         }
 
-        for (int x : st) sum += x;
+        reverse(digits.begin(), digits.end());
 
-        return sum == 0 ? mx : sum;
+        long long concat = 0, sum = 0;
+        for (int d : digits) {
+            concat = concat * 10 + d;
+            sum += d;
+        }
+
+        return concat * sum;
     }
 };
