@@ -1,16 +1,16 @@
-
 class Solution {
 public:
-    int findMissingElement(vector<int>& nums) {
-        int n = nums.size();
-
-        int expected = n * (n + 1) / 2;
-        int actual = 0;
-
-        for (int i = 0; i < nums.size(); i++) {
-            actual += nums[i];
+    vector<int> findMissingElements(vector<int>& nums) {
+        unordered_set<int> present(nums.begin(), nums.end());
+        auto [min_it, max_it] = minmax_element(nums.begin(), nums.end());
+        
+        vector<int> result;
+        for (int i = *min_it + 1; i < *max_it; ++i) {
+            if (present.find(i) == present.end()) {
+                result.push_back(i);
+            }
         }
-
-        return expected - actual;
+        
+        return result;
     }
 };
