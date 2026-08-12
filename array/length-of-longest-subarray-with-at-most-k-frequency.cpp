@@ -1,11 +1,20 @@
 class Solution {
 public:
-    double compressedMean(vector<int>& nums) {
-        sort(nums.begin(), nums.end());
-        int n = nums.size();
-        long long sum = 0;
-        for (int i = 1; i < n - 1; i++)
-            sum += nums[i];
-        return (double)sum / (n - 2);
+    int maxSubarrayLength(vector<int>& nums, int k) {
+        unordered_map<int, int> freq;
+        int left = 0, ans = 0;
+
+        for (int right = 0; right < nums.size(); right++) {
+            freq[nums[right]]++;
+
+            while (freq[nums[right]] > k) {
+                freq[nums[left]]--;
+                left++;
+            }
+
+            ans = max(ans, right - left + 1);
+        }
+
+        return ans;
     }
 };
