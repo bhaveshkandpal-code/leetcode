@@ -12,9 +12,8 @@ public:
         }
 
         int curr = r - l + 1;
-        int next = solve(s, l, r + 1, freq);
 
-        return max(curr, next);
+        return max(curr, solve(s, l, r + 1, freq));
     }
 
     int maximumLengthSubstring(string s) {
