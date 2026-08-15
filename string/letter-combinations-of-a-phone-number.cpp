@@ -25,11 +25,6 @@ for (int i = 0; i < value.size(); i++){
        int index = 0;
        vector<string> mapping ={"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
        solve ( index ,  mapping , output,digits, ans);
-        
-
-
-      
-
         return ans;
     }
 };
