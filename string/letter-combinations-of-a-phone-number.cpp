@@ -1,32 +1,34 @@
 class Solution {
 public:
-    void solve(string &digits, int idx, string curr, vector<string>& ans) {
-        if (idx == digits.size()) {
-            ans.push_back(curr);
-            return;
-        }
-
-        string mp[] = {
-            "", "", "abc", "def", "ghi",
-            "jkl", "mno", "pqrs", "tuv", "wxyz"
-        };
-
-        string letters = mp[digits[idx] - '0'];
-
-        for (char ch : letters) {
-            curr.push_back(ch);
-            solve(digits, idx + 1, curr, ans);
-            curr.pop_back();
-        }
+void  solve ( int index , vector<string> mapping , string output,string digits, vector <string > &ans){
+    if (index >=digits.size() ){
+        ans.push_back( output);
+        return;
     }
 
+    int number = digits[index]-'0';
+    string value = mapping [number];
+
+for (int i = 0; i < value.size(); i++){
+        output.push_back(value [i]);
+        solve ( index +1, mapping, output, digits , ans  );
+        output.pop_back();
+    }
+
+}
     vector<string> letterCombinations(string digits) {
         vector<string> ans;
 
         if (digits.empty())
             return ans;
+       string output;
+       int index = 0;
+       vector<string> mapping ={"","","abc","def","ghi","jkl","mno","pqr","tuv","wxyz"};
+       solve ( index ,  mapping , output,digits, ans);
+        
 
-        solve(digits, 0, "", ans);
+
+      
 
         return ans;
     }
