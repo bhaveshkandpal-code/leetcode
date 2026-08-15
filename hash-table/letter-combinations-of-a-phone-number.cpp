@@ -23,7 +23,7 @@ for (int i = 0; i < value.size(); i++){
             return ans;
        string output;
        int index = 0;
-       vector<string> mapping ={"","","abc","def","ghi","jkl","mno","pqr","tuv","wxyz"};
+       vector<string> mapping ={"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
        solve ( index ,  mapping , output,digits, ans);
         
 
